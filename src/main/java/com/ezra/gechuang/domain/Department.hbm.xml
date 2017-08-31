@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!--配置类和表对应 name属性：实体类全路径  table属性：数据库名称-->
+    <class name="com.ezra.gechuang.domain.Department" table="t_department">
+        <!--配置实体类id和表id对应，hibernate要求一个属性具有唯一值-->
+        <id name="dId" column="d_id">
+            <!--设置数据库表id增长策略
+            navtive:设置id就是主键自增长-->
+            <generator class="native"></generator>
+        </id>
+        <property name="dName" column="d_name"></property>
+        <property name="dDescription" column="d_decription"></property>
+
+        <!--roles，本类与User一对多关系-->
+        <set name="users">
+            <key column="u_department"></key>
+            <one-to-many class="com.ezra.gechuang.domain.User"/>
+        </set>
+
+        <!--parent，本类与Department上级多对一关系-->
+        <many-to-one name="parent" column="p_children" class="com.ezra.gechuang.domain.Department"/>
+
+        <!--children，本类与Department下级一对多关系-->
+        <set name="children" cascade="delete" order-by="dId">
+            <key column="p_children"></key>
+            <one-to-many class="com.ezra.gechuang.domain.Department"/>
+        </set>
+    </class>
+
+</hibernate-mapping>

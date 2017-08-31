@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <!--启用开发模式-->
+    <constant name="struts.devMode" value="true"></constant>
+    <!--配置主题-->
+    <constant name="struts.ui.theme" value="simple"></constant>
+
+    <package name="default" extends="struts-default" namespace="/">
+
+        <interceptors>
+            <!--声明一个拦截器-->
+            <interceptor name="checkPrivilege" class="com.ezra.gechuang.interceptor.CheckPrivilegeInterceptor"/>
+            <!--覆盖默认拦截器，使权限检查优先执行-->
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="checkPrivilege"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <global-results>
+            <result name="loginUI">WEB-INF/jsp/userAction/login.jsp</result>
+            <result name="noPrivilegeError">/noPrivilegeError.jsp</result>
+        </global-results>
+
+        <!--NOTE:在struts2.5及以上版本默认不支持通配符，所以要在配置文件中添加全局通配符配置。即-->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <action name="test" class="actionTest">
+            <result name="success">/test.jsp</result>
+        </action>
+
+        <action name="role_*" class="roleAction" method="{1}">
+            <result name="toEditPage">WEB-INF/jsp/roleAction/edit.jsp</result>
+            <result name="toSetPrivilegePage">WEB-INF/jsp/roleAction/setPrivilege.jsp</result>
+            <result name="toList" type="redirectAction">role_list</result>
+            <result name="list">WEB-INF/jsp/roleAction/list.jsp</result>
+        </action>
+
+        <action name="department_*" class="departmentAction" method="{1}">
+            <result name="toEditPage">WEB-INF/jsp/departmentAction/edit.jsp</result>
+            <result name="toList" type="redirectAction">department_list?parentId=${parentId}</result>
+            <result name="list">WEB-INF/jsp/departmentAction/list.jsp</result>
+        </action>
+
+        <action name="user_*" class="userAction" method="{1}">
+            <result name="toIndex" type="redirect">/index.jsp</result>
+            <result name="logout">WEB-INF/jsp/userAction/logout.jsp</result>
+
+            <result name="toEditPage">WEB-INF/jsp/userAction/edit.jsp</result>
+            <result name="toList" type="redirectAction">user_list</result>
+            <result name="list">WEB-INF/jsp/userAction/list.jsp</result>
+        </action>
+
+        <action name="home_*" class="homeAction" method="{1}">
+            <result name="{1}">WEB-INF/jsp/homeAction/{1}.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

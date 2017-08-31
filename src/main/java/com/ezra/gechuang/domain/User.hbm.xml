@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!--配置类和表对应 name属性：实体类全路径  table属性：数据库名称-->
+    <class name="com.ezra.gechuang.domain.User" table="t_user">
+        <!--配置实体类id和表id对应，hibernate要求一个属性具有唯一值-->
+        <id name="uId" column="u_id">
+            <!--设置数据库表id增长策略
+            navtive:设置id就是主键自增长-->
+            <generator class="native"></generator>
+        </id>
+        <property name="uName" column="u_name"></property>
+        <property name="uLoginName" column="u_login_name"></property>
+        <property name="uPassword" column="u_password"></property>
+        <property name="uSex" column="u_sex"></property>
+        <property name="uPhone" column="u_phone"></property>
+        <property name="uEmail" column="u_email"></property>
+        <property name="uDescription" column="u_desctiption"></property>
+
+        <!--uDepartment,本类与Department的多对一关系-->
+        <many-to-one name="uDepartment" column="u_department" class="com.ezra.gechuang.domain.Department"/>
+
+        <!--roles，本类与Role的多对多关系-->
+        <set name="roles" table="t_user_role" lazy="false">
+            <!--引用当前表的外键-->
+            <key column="uId"></key>
+            <many-to-many class="com.ezra.gechuang.domain.Role" column="rId"></many-to-many>
+        </set>
+
+    </class>
+
+</hibernate-mapping>

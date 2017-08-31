@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!--配置类和表对应 name属性：实体类全路径  table属性：数据库名称-->
+    <class name="com.ezra.gechuang.domain.Role" table="t_role">
+        <!--配置实体类id和表id对应，hibernate要求一个属性具有唯一值-->
+        <id name="rId" column="r_id">
+            <!--设置数据库表id增长策略
+            navtive:设置id就是主键自增长-->
+            <generator class="native"></generator>
+        </id>
+        <property name="rName" column="r_name"></property>
+        <property name="rDescription" column="r_description"></property>
+
+        <!--roles，本类与User的多对多关系-->
+        <set name="users" table="t_user_role">
+            <key column="rId"></key>
+            <many-to-many class="com.ezra.gechuang.domain.User" column="uId"/>
+        </set>
+
+        <!--privileges,本类与Privilege的多对多关系-->
+        <set name="privileges" table="t_role_privilege" lazy="false">
+            <key column="rId"></key>
+            <many-to-many class="com.ezra.gechuang.domain.Privilege" column="pId"></many-to-many>
+        </set>
+
+    </class>
+
+</hibernate-mapping>
