@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <%@ include file="/WEB-INF/jsp/public/common.jsp"%>
-    <link type="text/css" rel="stylesheet" href="style/blue/statusbar.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/style/blue/statusbar.css" />
 
 </head>
 
@@ -21,15 +21,15 @@
     </div>
 
     <DIV id=DesktopText>
-        <a href="javascript:void(0)"><img border="0" src="style/images/top/text.gif"/> 便笺</a>
+        <a href="javascript:void(0)"><img border="0" src="${pageContext.request.contextPath }/style/images/top/text.gif"/> 便笺</a>
 
         <span id=TryoutInfo>
 
         </span>
         <span id="Version">
             <a href="javascript:void(0)">
-            	<img border="0" width="11" height="11" src="style/images/top/help.gif" />
-            	<img border="0" width="40" height="11" src="style/blue/images/top/version.gif" />
+            	<img border="0" width="11" height="11" src="${pageContext.request.contextPath }/style/images/top/help.gif" />
+            	<img border="0" width="40" height="11" src="${pageContext.request.contextPath }/style/blue/images/top/version.gif" />
             </a>
         </span>
     </DIV>

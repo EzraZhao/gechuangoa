@@ -45,5 +45,9 @@
     <import resource="classpath:user.xml"/>
     <import resource="classpath:privilege.xml"/>
     <import resource="classpath:home.xml"/>
+    <import resource="classpath:forumManager.xml"/>
+    <import resource="classpath:forum.xml"/>
+    <import resource="classpath:topic.xml"/>
+    <import resource="classpath:reply.xml"/>
 
 </beans>

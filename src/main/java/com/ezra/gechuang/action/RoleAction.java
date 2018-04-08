@@ -70,7 +70,10 @@ public class RoleAction extends ActionSupport implements ModelDriven<Role> {
     }
 
     public String update() {
-        roleService.update(role);
+        Role r = roleService.findById(role.getrId());
+        r.setrName(role.getrName());
+        r.setrDescription(r.getrDescription());
+        roleService.update(r);
         return "toList";
     }
 

@@ -11,7 +11,7 @@
 <head>
     <title>导航菜单</title>
     <%@ include file="/WEB-INF/jsp/public/common.jsp"%>
-    <link type="text/css" rel="stylesheet" href="style/blue/menu.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/style/blue/menu.css"/>
 
     <script type="text/javascript">
         function menuClick(menuDiv) {
@@ -31,14 +31,14 @@
             <s:if test="#session.currentUser.hasPrivilegeByName(pName)">
                 <li class="level1">
                     <div onClick="menuClick(this);" class="level1Style">
-                        <img src="style/images/MenuIcon/${pIcon}" class="Icon"/> ${pName}
+                        <img src="${pageContext.request.contextPath }/style/images/MenuIcon/${pIcon}" class="Icon"/> ${pName}
                     </div>
                    <ul style="display: none;" class="MenuLevel2">
                         <s:iterator value="children">
                             <s:if test="#session.currentUser.hasPrivilegeByName(pName)">
                                 <li class="level2">
-                                    <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif"/>
-                                        <a target="right" href="${pUrl}.action"> ${pName}</a></div>
+                                    <div class="level2Style"><img src="${pageContext.request.contextPath }/style/images/MenuIcon/menu_arrow_single.gif"/>
+                                        <a target="right" href="${pageContext.request.contextPath}/${pUrl}.action"> ${pName}</a></div>
                                 </li>
                             </s:if>
                         </s:iterator>

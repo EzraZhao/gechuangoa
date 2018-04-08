@@ -76,7 +76,7 @@ public class Installer {
         ///////////////////////////////////////////////////////////////////////////
 
         menu = new Privilege("网上交流", null, "FUNC20064.gif", null);
-        menu1 = new Privilege("论坛管理", "forum_list", null, menu);
+        menu1 = new Privilege("论坛管理", "forumManager_list", null, menu);
         menu2 = new Privilege("论坛", "forum_list", null, menu);
 
         session.save(menu);

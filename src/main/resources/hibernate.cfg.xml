@@ -20,6 +20,9 @@
         <mapping resource="com/ezra/gechuang/domain/Role.hbm.xml"/>
         <mapping resource="com/ezra/gechuang/domain/Department.hbm.xml"/>
         <mapping resource="com/ezra/gechuang/domain/Privilege.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Forum.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Topic.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Reply.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

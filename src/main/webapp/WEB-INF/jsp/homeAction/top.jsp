@@ -4,7 +4,7 @@
 <head>
 	<title>TopMenu</title>
     <%@ include file="/WEB-INF/jsp/public/common.jsp"%>
-    <link type="text/css" rel="stylesheet" href="style/blue/top.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/style/blue/top.css" />
 
     <script type="text/javascript">
 	</script>
@@ -28,36 +28,36 @@
         </div>
 		<div id="Head1Right">
 			<div id="Head1Right_UserName">
-                <img border="0" width="13" height="14" src="style/images/top/user.gif" /> 您好，<b> ${currentUser.uName }</b>
+                <img border="0" width="13" height="14" src="${pageContext.request.contextPath }/style/images/top/user.gif" /> 您好，<b> ${currentUser.uName }</b>
 			</div>
 			<div id="Head1Right_UserDept"></div>
 			<div id="Head1Right_UserSetup">
-            	<a href="javascript:void(0)"><img border="0" width="13" height="14" src="style/images/top/user_setup.gif" /> 个人设置</a>
+            	<a href="javascript:void(0)"><img border="0" width="13" height="14" src="${pageContext.request.contextPath }/style/images/top/user_setup.gif" /> 个人设置</a>
 			</div>
 			<div id="Head1Right_Time">
 				</div>
 		</div>
         <div id="Head1Right_SystemButton">
             <a href="user_logout" target="_parent">
-                <img width="78" height="20" alt="退出系统" src="style/blue/images/top/logout.gif" />
+                <img width="78" height="20" alt="退出系统" src="${pageContext.request.contextPath }/style/blue/images/top/logout.gif" />
             </a>
         </div>
         <div id="Head1Right_Button">
-            <a target="desktop" href="javascript:void(0)"><img width="65" height="20" alt="显示桌面" src="style/blue/images/top/desktop.gif" /></a>
+            <a target="desktop" href="javascript:void(0)"><img width="65" height="20" alt="显示桌面" src="${pageContext.request.contextPath }/style/blue/images/top/desktop.gif" /></a>
         </div>
 	</div>
     
     <div id="Head2">
         <div id="Head2_Awoke">
             <ul id="AwokeNum">
-                <li><a target="desktop" href="javascript:void(0)"><img border="0" width="11" height="13" src="style/images/top/msg.gif" /> 消息<span id="msg"></span></a></li>
+                <li><a target="desktop" href="javascript:void(0)"><img border="0" width="11" height="13" src="${pageContext.request.contextPath }/style/images/top/msg.gif" /> 消息<span id="msg"></span></a></li>
                 <li class="Line"></li>
-                <li><a target="desktop" href="javascript:void(0)"><img border="0" width="16" height="11" src="style/images/top/mail.gif" /> 邮件<span id="mail"></span></a></li>
+                <li><a target="desktop" href="javascript:void(0)"><img border="0" width="16" height="11" src="${pageContext.request.contextPath }/style/images/top/mail.gif" /> 邮件<span id="mail"></span></a></li>
                 <li class="Line"></li>
                 
                 <!-- 是否有待审批文档的提示1 -->
                 <li><a href="formFlowAction_myTaskList" target="right">
-                		<img border="0" width="12" height="14" src="style/images/top/wait.gif" /> 
+                		<img border="0" width="12" height="14" src="${pageContext.request.contextPath }/style/images/top/wait.gif" /> 
                 		待办事项（<span id="wait" class="taskListSize">0</span>）
                 	</a>
                 </li>

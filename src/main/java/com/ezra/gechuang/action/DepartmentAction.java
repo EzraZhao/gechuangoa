@@ -68,8 +68,13 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
     }
 
     public String update() {
-        department.setParent(departmentService.findById(parentId));
-        departmentService.update(department);
+        Department d = departmentService.findById(department.getdId());
+
+        d.setParent(departmentService.findById(parentId));
+        d.setdName(department.getdName());
+        d.setdDescription(department.getdDescription());
+
+        departmentService.update(d);
         return "toList";
     }
 
