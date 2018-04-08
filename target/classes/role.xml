@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="roleAction" class="com.ezra.gechuang.action.RoleAction" scope="prototype">
+        <property name="roleService" ref="roleServiceImpl"/>
+        <property name="privilegeService" ref="privilegeServiceImpl"/>
+    </bean>
+    <bean id="roleServiceImpl" class="com.ezra.gechuang.service.impl.RoleServiceImpl">
+        <property name="roleDao" ref="roleDaoImpl"/>
+    </bean>
+    <bean id="roleDaoImpl" class="com.ezra.gechuang.dao.impl.RoleDaoImpl">
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"/>-->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="replyAction" class="com.ezra.gechuang.action.ReplyAction" scope="prototype">
+        <property name="replyService" ref="replyServiceImpl"/>
+        <property name="topicService" ref="topicServiceImpl"/>
+    </bean>
+    <bean id="replyServiceImpl" class="com.ezra.gechuang.service.impl.ReplyServiceImpl">
+        <property name="replyDao" ref="replyDaoImpl"/>
+        <property name="forumDao" ref="forumDaoImpl"/>
+        <property name="topicDao" ref="topicDaoImpl"/>
+    </bean>
+    <bean id="replyDaoImpl" class="com.ezra.gechuang.dao.impl.ReplyDaoImpl">
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"/>-->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>

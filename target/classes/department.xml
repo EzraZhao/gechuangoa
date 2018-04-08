@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="departmentAction" class="com.ezra.gechuang.action.DepartmentAction" scope="prototype">
+        <property name="departmentService" ref="departmentServiceImpl"/>
+    </bean>
+    <bean id="departmentServiceImpl" class="com.ezra.gechuang.service.impl.DepartmentServiceImpl">
+        <property name="departmentDao" ref="departmentDaoImpl"/>
+    </bean>
+    <bean id="departmentDaoImpl" class="com.ezra.gechuang.dao.impl.DepartmentDaoImpl">
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"/>-->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>

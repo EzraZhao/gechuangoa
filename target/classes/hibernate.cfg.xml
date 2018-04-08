@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--配置数据库方言 例：mysql：分页limit   oracle：rownum-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <property name="current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</property>
+
+        <!--引入核心配置文件-->
+        <mapping resource="com/ezra/gechuang/domain/User.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Role.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Department.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Privilege.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Forum.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Topic.hbm.xml"/>
+        <mapping resource="com/ezra/gechuang/domain/Reply.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>

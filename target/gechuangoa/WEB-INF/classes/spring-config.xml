@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!--spirng和hibernate整合-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!--<property name="minIdle" value="${jdbc.minIdle}"/>-->
+        <!--<property name="initialSize" value="${jdbc.initialSize}"/>-->
+        <!--<property name="maxActive" value="${jdbc.maxActive}"/>-->
+    </bean>
+
+    <!--自动扫描与装配bean-->
+    <context:component-scan base-package="com.ezra.gechuang"/>
+
+    <!--sessionFactory创建-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--指定数据库信息-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--指定hibernate配置文件位置-->
+        <property name="configLocations" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+
+    <!--事务配置-->
+    <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--开启注解-->
+    <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+
+    <!--把安装sessionFactory管理也交给spring-->
+    <bean id="installer" class="com.ezra.gechuang.install.Installer">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <import resource="classpath:role.xml"/>
+    <import resource="classpath:department.xml"/>
+    <import resource="classpath:user.xml"/>
+    <import resource="classpath:privilege.xml"/>
+    <import resource="classpath:home.xml"/>
+    <import resource="classpath:forumManager.xml"/>
+    <import resource="classpath:forum.xml"/>
+    <import resource="classpath:topic.xml"/>
+    <import resource="classpath:reply.xml"/>
+
+</beans>
