@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="gechuangoa:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="gechuangoa.war">
+      <element id="artifact" artifact-name="gechuangoa:war exploded" />
+    </root>
+  </artifact>
+</component>
